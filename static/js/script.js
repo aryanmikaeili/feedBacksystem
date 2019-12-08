@@ -1,12 +1,12 @@
 $(document).ready(function() {
-  
+
   var animating = false,
       submitPhase1 = 1100,
       submitPhase2 = 400,
       logoutPhase1 = 800,
       $login = $(".login"),
       $app = $(".app");
-  
+
   function ripple(elem, e) {
     $(".ripple").remove();
     var elTop = elem.offset().top,
@@ -17,13 +17,15 @@ $(document).ready(function() {
     $ripple.css({top: y, left: x});
     elem.append($ripple);
   };
-  
+
   $(document).on("click", ".login__submit", function(e) {
     if (animating) return;
     animating = true;
     var that = this;
     ripple($(that), e);
     $(that).addClass("processing");
+    window.location.replace("")
+    /*
     setTimeout(function() {
       $(that).addClass("success");
       setTimeout(function() {
@@ -37,9 +39,9 @@ $(document).ready(function() {
         animating = false;
         $(that).removeClass("success processing");
       }, submitPhase2);
-    }, submitPhase1);
+    }, submitPhase1);*/
   });
-  
+
   $(document).on("click", ".app__logout", function(e) {
     if (animating) return;
     $(".ripple").remove();
@@ -58,5 +60,5 @@ $(document).ready(function() {
       $(that).removeClass("clicked");
     }, logoutPhase1);
   });
-  
+
 });

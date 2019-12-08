@@ -18,16 +18,19 @@ from django.urls import path
 from django.shortcuts import render
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from . import  settings
+from User.views import signup
+from . import settings
 
 
 def home_view(request):
     return render(request, "index.html", {})
 
 
+
 urlpatterns = [
     path('', home_view, name='home'),
     path('admin/', admin.site.urls),
+    path('signup/', signup, name='signup')
 ]
 
 urlpatterns += staticfiles_urlpatterns()
