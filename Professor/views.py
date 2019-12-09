@@ -5,7 +5,7 @@ def professor_view(request, id):
     context = {
         "object" : obj
     }
-    return render(request, "professor/detail.html", context)
+    return render(request, "professor/detstu.html", context)
 # Create your views here.
 
 # Create your views here.

@@ -8,4 +8,4 @@ def student_view(request, id):
     context = {
         "object" : obj
     }
-    return render(request, "student/detail.html", context)
+    return render(request, "student/detstu.html", context)
