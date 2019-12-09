@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url
 from django.shortcuts import render
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from User.views import signup, user_login
+from User.views import signup, user_login, user_logout
 from Student.views import student_view
 from Professor.views import professor_view
 from . import settings
@@ -34,7 +35,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/', signup, name='signup'),
     path('student/<int:id>', student_view, name='student'),
-    path('professor/<int:id>', professor_view, name='professor')
+    path('professor/<int:id>', professor_view, name='professor'),
+
+    url(r'^logout/$', user_logout, name='logout')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

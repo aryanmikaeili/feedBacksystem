@@ -4,6 +4,7 @@ from Professor.forms import ProfessorSignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from Professor.models import Professor
 from Student.models import Student
@@ -72,6 +73,10 @@ def signup(request):
     #return HttpResponse("user logged in")
     return render(request,'signup.html',{'user_form':user_form,'profile_form':profile_form,'prof_form':prof_form,'registered':registered})
 
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('home'))
 
 def user_login(request):
     if request.method == 'POST':
