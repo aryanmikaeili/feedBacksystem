@@ -24,7 +24,13 @@ $(document).ready(function() {
     var that = this;
     ripple($(that), e);
     $(that).addClass("processing");
-    window.location.replace("")
+    var username = document.getElementById("dehghoon").value;
+    var password = document.getElementById("amrez").value;
+    $.post("", {'username':username ,'password':password}, function (data) {
+      if(data == "Student-Login") {
+        window.location.replace("/signup/")
+      }
+    });
     /*
     setTimeout(function() {
       $(that).addClass("success");

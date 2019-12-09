@@ -1,12 +1,17 @@
 from django.shortcuts import render
 from Student.forms import UserSignUpForm, StudentSignUpForm
-from  Professor.forms import ProfessorSignUpForm
-
+from Professor.forms import ProfessorSignUpForm
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
+from django.contrib.auth.models import User
+from Professor.models import Professor
+from Student.models import Student
 # Create your views here.
 
 
 def signup(request):
-    print(request.POST)
+    print(request.method, request.body)
     registered = False
     if request.method == 'POST':
         if 'Field' in request.FILES:
@@ -53,8 +58,34 @@ def signup(request):
         prof_form = ProfessorSignUpForm()
 
 
-    print("AWLIIIII")
+    print("AWLIIIII", registered, user_form, profile_form, prof_form)
+    #return HttpResponse("user logged in")
     return render(request,'signup.html',{'user_form':user_form,'profile_form':profile_form,'prof_form':prof_form,'registered':registered})
 
 
+def user_login(request):
+    print(request.method)
+    print(request.body)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                if Student.objects.get(StudentID=username) != None:
+                    print("hey")
+                    login(request, user)
+                    #return HttpResponseRedirect("/signup")
 
+                    return HttpResponse("Student-Login")
+                else:
+                    login(request, user)
+                    return HttpResponse("Professor-Login")
+            else:
+                return HttpResponse("Your account was inactive.")
+        else:
+            print("Someone tried to login and failed.")
+            print("They used username: {} and password: {}".format(username, password))
+            return HttpResponse("Invalid login details given")
+    else:
+        return render(request, 'index.html', {})
