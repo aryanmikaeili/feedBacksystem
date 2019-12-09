@@ -27,14 +27,9 @@ $(document).ready(function() {
     var username = document.getElementById("dehghoon").value;
     var password = document.getElementById("amrez").value;
     $.post("", {'username':username ,'password':password}, function (data) {
-      var id = parseInt(data);
-      if(data.toString().endsWith("Student-Login")) {
-        window.location.replace("/student/"+id)
+      if(data == "Student-Login") {
+        window.location.replace("/signup/")
       }
-    if(data.toString().endsWith("Professor-Login")) {
-        window.location.replace("/professor/"+id)
-      }
-
     });
     /*
     setTimeout(function() {
