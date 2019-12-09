@@ -19,6 +19,8 @@ from django.shortcuts import render
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from User.views import signup, user_login
+from Student.views import student_view
+from Professor.views import professor_view
 from . import settings
 
 
@@ -30,8 +32,13 @@ def home_view(request):
 urlpatterns = [
     path('', user_login, name='home'),
     path('admin/', admin.site.urls),
-    path('signup/', signup, name='signup')
+    path('signup/', signup, name='signup'),
+    path('student/<int:id>', student_view, name='student'),
+    path('professor/<int:id>', professor_view, name='professor')
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
