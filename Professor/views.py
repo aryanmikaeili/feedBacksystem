@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Professor
 def professor_view(request, id):
-    obj = Professor.objects.get(id=id)
+    obj = Professor.objects.get(ProfID=id)
     context = {
         "object" : obj
     }

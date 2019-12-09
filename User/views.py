@@ -7,14 +7,20 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from Professor.models import Professor
 from Student.models import Student
+import copy
+import json
 # Create your views here.
 
 
 def signup(request):
-    print(request.method, request.body)
+
     registered = False
+    a = copy.deepcopy(str(request.body))
+    #print(a)
     if request.method == 'POST':
-        if 'Field' in request.FILES:
+        print(request.method, "akbar")
+
+        if a.find("\x46\x69\x65\x6c\x64") != -1 or a.find("Field") != -1:
             user_form = UserSignUpForm(data=request.POST)
             prof_form = ProfessorSignUpForm(data=request.POST)
             profile_form = StudentSignUpForm()
@@ -26,14 +32,17 @@ def signup(request):
                 profile.user = user
                 profile.ProfID = user.username
                 if 'profile_pic' in request.FILES:
-                    print('found it')
+                    #print('found it')
                     profile.profile_pic = request.FILES['profile_pic']
                 profile.save()
                 registered = True
             else:
-                print(user_form.errors, prof_form.errors)
+                pass
+                #print(user_form.errors, prof_form.errors)
 
         else:
+            print(request.method, "amrez")
+            #print(request.FILES)
             user_form = UserSignUpForm(data=request.POST)
             profile_form = StudentSignUpForm(data=request.POST)
             prof_form = ProfessorSignUpForm()
@@ -45,12 +54,13 @@ def signup(request):
                 profile.user = user
                 profile.StudentID = user.username
                 if 'profile_pic' in request.FILES:
-                    print('found it')
+                    #print('found it')
                     profile.profile_pic = request.FILES['profile_pic']
                 profile.save()
                 registered = True
             else:
-                print(user_form.errors, profile_form.errors)
+                pass
+                #print(user_form.errors, profile_form.errors)
 
     else:
         user_form = UserSignUpForm()
@@ -58,29 +68,32 @@ def signup(request):
         prof_form = ProfessorSignUpForm()
 
 
-    print("AWLIIIII", registered, user_form, profile_form, prof_form)
+    print("AWLIIIII", registered)
     #return HttpResponse("user logged in")
     return render(request,'signup.html',{'user_form':user_form,'profile_form':profile_form,'prof_form':prof_form,'registered':registered})
 
 
 def user_login(request):
-    print(request.method)
-    print(request.body)
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user:
             if user.is_active:
-                if Student.objects.get(StudentID=username) != None:
-                    print("hey")
-                    login(request, user)
-                    #return HttpResponseRedirect("/signup")
+                try:
+                    if Student.objects.get(StudentID=username) != None:
+                        print("bale")
+                        login(request, user)
+                        #return HttpResponseRedirect("/signup")
 
-                    return HttpResponse("Student-Login")
-                else:
-                    login(request, user)
-                    return HttpResponse("Professor-Login")
+                        return HttpResponse(str(username) + "*Student-Login")
+                except:
+                    try:
+                        if Professor.objects.get(ProfID=username) != None:
+                            login(request, user)
+                            return HttpResponse(str(username) + "*Professor-Login")
+                    except:
+                        return HttpResponse("Invalid login details given")
             else:
                 return HttpResponse("Your account was inactive.")
         else:

@@ -3,7 +3,8 @@ from .models import Student
 # Create your views here.
 
 def student_view(request, id):
-    obj = Student.objects.get(id=id)
+    print(type(id))
+    obj = Student.objects.get(StudentID=id)
     context = {
         "object" : obj
     }
