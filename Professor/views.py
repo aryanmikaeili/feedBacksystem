@@ -9,6 +9,8 @@ def professor_view(request, id):
         "object" : obj
     }
     return render(request, "professor/detstu.html", context)
+
+
 # Create your views here.
 
 # Create your views here.

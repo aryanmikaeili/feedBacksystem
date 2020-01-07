@@ -23,7 +23,7 @@ from User.views import signup, user_login, user_logout
 from Student.views import student_view
 from Professor.views import professor_view
 from . import settings
-
+from Course.views import AddCourse
 
 def home_view(request):
     return render(request, "index.html", {})
@@ -36,7 +36,7 @@ urlpatterns = [
     path('signup/', signup, name='signup'),
     path('student/<int:id>', student_view, name='student'),
     path('professor/<int:id>', professor_view, name='professor'),
-
+    path('CourseForm/', AddCourse, name='addcourseform'),
     url(r'^logout/$', user_logout, name='logout')
 ]
 
