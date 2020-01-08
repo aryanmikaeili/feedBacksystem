@@ -48,12 +48,28 @@ def SearchCourse(request):
     object_list = Course.objects.filter(
         Q(Name__icontains=query)
     )
+    professor_name_strings = []
+    objects = []
+    for o in object_list:
+        prof = o.Professor.all()
+
+        s = ""
+        for i in range(len(prof)):
+            s += prof[i].FirstName + " " + prof[i].LastName
+        professor_name_strings.append(s)
+        print(s)
+    for o in range(len(object_list)):
+        objects.append([object_list[o], o])
+
+
 
     context = {
         'object': object_list,
-        'user':user[0]
+        'user':user[0],
+        'names':professor_name_strings,
+        'iter' : 0
     }
 
-    print(user)
+
 
     return render(request, 'Course/Course_Search.html', context)

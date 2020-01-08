@@ -135,7 +135,9 @@
                                             <th> course name </th>
                                             <th>course id</th>
                                             <th>group</th>
+
                                             <th>professor name</th>
+
                                             <th>status</th>
                                             <th></th>
                                         </tr>
@@ -148,9 +150,13 @@
                                                 <span class="block-email">{{ i.CourseID }}</span>
                                             </td>
                                             <td class="desc">{{ i.GroupID }}</td>
+                                                <td>
+                                    {% for j in i.Professor.all %}
+                                            {{ j.FirstName }}  {{ j.LastName }}
+                                                    <p></p>
 
-                                            <td>place holder</td>
-
+                                    {% endfor %}
+                                                </td>
                                                 <td>active</td>
                                                 <td>
                                                 <div class="table-data-feature">
