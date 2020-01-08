@@ -47,7 +47,14 @@
                         </a>
                     </div>
 
+             <form class="au-form-icon--sm" action="\search\" method="get" >
+                                    <input name="q" class="au-input--w300 au-input--style2" type="text" placeholder="Search a course...">
+                                    <button class="au-btn--submit2" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                </form>
                     <div class="header__tool">
+
 
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
@@ -57,6 +64,7 @@
                                 <div class="content">
                                     <a class="js-acc-btn" href="#">{{ object.FirstName }} {{object.LastName }} </a>
                                 </div>
+
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
@@ -98,10 +106,10 @@
 
         <!-- PAGE CONTENT-->
         <div class="page-content--bgf7">
-
             <!-- WELCOME-->
             <section class="welcome p-t-10">
                 <div class="container">
+
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="title-4">Welcome back
@@ -111,6 +119,7 @@
                         </div>
                     </div>
                 </div>
+
             </section>
             <!-- END WELCOME-->
 
@@ -153,14 +162,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h3 class="title-5 m-b-35">courses</h3>
-                            <div class="table-data__tool">
 
-                                <div class="table-data__tool-right">
-                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                        <i class="zmdi zmdi-plus"></i>add course</button>
-
-                                </div>
-                            </div>
                             <div class="table-responsive table-responsive-data2">
                                 <table class="table table-data2">
                                     <thead>
@@ -192,6 +194,17 @@
                 </div>
             </section>
             <!-- END DATA TABLE-->
+            <section class="p-t-60 p-b-20">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>A work by Kondor team.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
         </div>
@@ -215,14 +228,16 @@
     </script>
     <script src="{% static "vendor/circle-progress/circle-progress.min.js"%}"></script>
     <script src="{% static "vendor/perfect-scrollbar/perfect-scrollbar.js"%}"></script>
-    <script src="{% static "vendor/chartjs/Chart.bundle.min.js"%"}></script>
+    <script src="{% static "vendor/chartjs/Chart.bundle.min.js"%}"></script>
     <script src="{% static "vendor/select2/select2.min.js"%}">
     </script>
 
     <!-- Main JS-->
+
+
     <script src="{% static "js/main.js "%}"></script>
 
 </body>
 
-</html>
+
 <!-- end document-->

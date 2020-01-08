@@ -23,7 +23,7 @@ from User.views import signup, user_login, user_logout
 from Student.views import student_view
 from Professor.views import professor_view
 from . import settings
-from Course.views import AddCourse
+from Course.views import AddCourse, SearchCourse
 
 def home_view(request):
     return render(request, "index.html", {})
@@ -33,6 +33,7 @@ def home_view(request):
 urlpatterns = [
     path('', user_login, name='home'),
     path('admin/', admin.site.urls),
+    path('search/', SearchCourse, name='search_results'),
     path('signup/', signup, name='signup'),
     path('student/<int:id>', student_view, name='student'),
     path('professor/<int:id>', professor_view, name='professor'),
