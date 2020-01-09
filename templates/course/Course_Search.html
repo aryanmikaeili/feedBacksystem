@@ -157,14 +157,24 @@
 
                                     {% endfor %}
                                                 </td>
-                                                <td>active</td>
                                                 <td>
+                                                   {% if user in i.Student.all %}
+                                                            <span class="status--process">enrolled</span>
+                                                        {% else %}
+                                                            <span class="status--denied">not enrolled</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                     {% if user in i.Student.all %}
+                                                        <p></p>
+                                                    {% else %}
 
                                                     <div class="table-data-feature">
                                                     <button onclick="window.location.href = '/courseadd/{{i.CourseID}}/{{i.GroupID}}'" class="item" data-toggle="tooltip" data-placement="top" title="Add course">
                                                         <i class="zmdi zmdi-mail-send"></i>
                                                     </button>
                                                 </div>
+                                                     {% endif %}
                                             </td>
 
 

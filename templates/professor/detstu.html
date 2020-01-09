@@ -167,23 +167,44 @@
                                     <thead>
                                         <tr>
 
-                                            <th>course name</th>
+                                            <<th> course name </th>
                                             <th>course id</th>
+                                            <th>group</th>
+
                                             <th>professor name</th>
+
                                             <th>status</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="tr-shadow">
-                                            <td class>DA</td>
+                                        {% for i in object.course_set.all %}
+                                            <tr class="tr-shadow">
+                                            <td class>{{ i.Name }}</td>
                                             <td>
-                                                <span class="block-email">Ali Sharifi Zarchi</span>
+                                                <span class="block-email">{{ i.CourseID }}</span>
                                             </td>
-                                            <td class="desc">40354</td>
-                                            <td>active</td>
+                                            <td class="desc">{{ i.GroupID }}</td>
+                                                <td>
+                                    {% for j in i.Professor.all %}
+                                            {{ j.FirstName }}  {{ j.LastName }}
+                                                    <p></p>
+
+                                    {% endfor %}
+                                                </td>
+                                                <td>active</td>
+                                                <td>
+
+                                                    <div class="table-data-feature">
+                                                    <button onclick="window.location.href = '/coursepage/{{i.CourseID}}/{{i.GroupID}}'" class="item" data-toggle="tooltip" data-placement="top" title="got to course">
+                                                        <i class="zmdi zmdi-mail-send"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+
 
                                         </tr>
+                                        {% endfor %}
 
                                     </tbody>
                                 </table>
