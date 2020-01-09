@@ -47,7 +47,7 @@
                         </a>
                     </div>
 
-         <form class="au-form-icon--sm" action="\search\" method="get" >
+             <form class="au-form-icon--sm" action="\search\" method="get" >
                                     <input name="q" class="au-input--w300 au-input--style2" type="text" placeholder="Search a course...">
                                     <button class="au-btn--submit2" type="submit">
                                         <i class="zmdi zmdi-search"></i>
@@ -101,17 +101,26 @@
                 </div>
             </div>
         </header>
-
-
-
         <!-- END HEADER DESKTOP-->
 
 
         <!-- PAGE CONTENT-->
         <div class="page-content--bgf7">
-
             <!-- WELCOME-->
+            <section class="welcome p-t-10">
+                <div class="container">
 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="title-4">
+                                Course {{object.CourseID}} group {{object.GroupID}} added
+                            </h1>
+                            <hr class="line-seprate">
+                        </div>
+                    </div>
+                </div>
+
+            </section>
             <!-- END WELCOME-->
 
             <!-- STATISTIC-->
@@ -121,66 +130,9 @@
 
 
             <!-- DATA TABLE-->
-            <section class="p-t-20">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="title-5 m-b-35">courses</h3>
 
-                            <div class="table-responsive table-responsive-data2">
-                                <table class="table table-data2">
-                                    <thead>
-                                        <tr>
-
-                                            <th> course name </th>
-                                            <th>course id</th>
-                                            <th>group</th>
-
-                                            <th>professor name</th>
-
-                                            <th>status</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for i in object %}
-                                            <tr class="tr-shadow">
-                                            <td class>{{ i.Name }}</td>
-                                            <td>
-                                                <span class="block-email">{{ i.CourseID }}</span>
-                                            </td>
-                                            <td class="desc">{{ i.GroupID }}</td>
-                                                <td>
-                                    {% for j in i.Professor.all %}
-                                            {{ j.FirstName }}  {{ j.LastName }}
-                                                    <p></p>
-
-                                    {% endfor %}
-                                                </td>
-                                                <td>active</td>
-                                                <td>
-
-                                                    <div class="table-data-feature">
-                                                    <button onclick="window.location.href = '/courseadd/{{i.CourseID}}/{{i.GroupID}}'" class="item" data-toggle="tooltip" data-placement="top" title="Add course">
-                                                        <i class="zmdi zmdi-mail-send"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-
-
-                                        </tr>
-                                        {% endfor %}
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
             <!-- END DATA TABLE-->
-             <section class="p-t-60 p-b-20">
+            <section class="p-t-60 p-b-20">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">

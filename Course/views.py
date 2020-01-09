@@ -39,6 +39,7 @@ def AddCourse(request):
 # Create your views here.
 
 def SearchCourse(request):
+
     query = request.GET.get('q')
     user = request.user.username
     user = Student.objects.filter(
@@ -57,11 +58,8 @@ def SearchCourse(request):
         for i in range(len(prof)):
             s += prof[i].FirstName + " " + prof[i].LastName
         professor_name_strings.append(s)
-        print(s)
     for o in range(len(object_list)):
         objects.append([object_list[o], o])
-
-
 
     context = {
         'object': object_list,
@@ -73,3 +71,28 @@ def SearchCourse(request):
 
 
     return render(request, 'Course/Course_Search.html', context)
+
+def joinCourse(request, id, group):
+    object = Course.objects.filter(
+        Q(CourseID=id, GroupID = group)
+
+    )
+    user = request.user.username
+    user = Student.objects.filter(
+        Q(StudentID=user)
+    )
+    context = {
+        "object":object[0],
+        "user":user[0]
+    }
+
+    object[0].Student.add(user[0])
+
+    print(user[0].course_set.all())
+    print(object[0].Student.all())
+
+
+
+
+
+    return render(request, 'Course/joinCourse.html', context)
