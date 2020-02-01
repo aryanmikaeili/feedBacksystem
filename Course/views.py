@@ -96,3 +96,17 @@ def joinCourse(request, id, group):
 
 
     return render(request, 'Course/joinCourse.html', context)
+
+
+@login_required
+def courseHome(request, cid, gid):
+    if Professor.objects.get(ProfID=int(request.user.username)) != None:
+        return courseHomeProfView(request, cid, gid)
+    return courseHomeStudentView(request, cid, gid)
+
+
+def courseHomeProfView(request, cid, gid):
+    return render(request, 'professor/ProfessorCourseView.html', {})
+
+def courseHomeStudentView(request, cid, gid):
+    pass

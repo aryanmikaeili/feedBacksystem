@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Student',
     'Professor',
     'SPC',
+    'Question',
     'User'
 ]
 
