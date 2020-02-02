@@ -2625,7 +2625,7 @@ Created using IcoMoon - icomoon.io
         color: #FFFFFF; }
     .sidebar .nav li.active > a,
     .off-canvas-sidebar .nav li.active > a {
-      background-color: #FFFFFF;
+      background-color: #CD5C5C;
       -webkit-box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
               box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1); }
     .sidebar .nav p,
