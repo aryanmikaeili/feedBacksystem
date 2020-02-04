@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\Users\Aryan\Desktop\HW6\FeedbackSystem"
+set "VIRTUAL_ENV=C:\Users\Aryan\Desktop\project_feedback\FeedbackSystem"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"
